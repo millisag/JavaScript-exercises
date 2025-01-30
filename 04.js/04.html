@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    input, button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    img {
+      display: block;
+      margin-top: 20px;
+      max-width: 300px;
+    }
+    
+</style>
+<body>
+    <p id="placeholder">This is some placeholder text.</p>
+    <button id="changeTextButton">Click Me!</button>
+
+    <button onclick="changeImage('https://static.vecteezy.com/system/resources/thumbnails/036/226/872/small/ai-generated-nature-landscapes-background-free-photo.jpg')">Image 1</button>
+    <button onclick="changeImage('https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg')">Image 2</button>
+    <br>
+    <img id="displayedImage" src="" alt="Click a button to display an image">
+
+    <input type="text" id="userInput" placeholder="Enter text here">
+    <button onclick="displayText()">Submit</button>
+    <p id="outputText"></p>
+
+    <p id="timer">10</p>
+
+  <button onclick="startTimer()">Start</button>
+  <button onclick="stopTimer()">Stop</button>
+
+  <input type="number" id="num1" placeholder="Enter first number">
+  <input type="number" id="num2" placeholder="Enter second number">
+  <br>
+  <button onclick="calculate('+')">+</button>
+  <button onclick="calculate('-')">-</button>
+  <button onclick="calculate('*')">*</button>
+  <button onclick="calculate('/')">÷</button>
+  <p id="result">Result: </p>
+    <script>
+    
+    alert('Welcome to My Website!');
+
+    const button = document.getElementById('changeTextButton');
+    const paragraph = document.getElementById('placeholder');
+
+    button.onclick = function() {
+    paragraph.innerHTML = 'You clicked the button!';
+    }
+
+    function changeImage(url) {
+      document.getElementById('displayedImage').src = url;
+    }
+    
+    function displayText() {
+      document.getElementById('outputText').innerHTML = document.getElementById('userInput').value;
+    }
+    let countdown = 10;
+    let timerInterval;
+
+    function startTimer() {
+      if (!timerInterval) { 
+        timerInterval = setInterval(function() {
+          document.getElementById('timer').innerHTML = countdown;
+          if (countdown === 0) {
+            clearInterval(timerInterval);
+            timerInterval = null; 
+          } else {
+            countdown--;
+          }
+        }, 1000);
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null; 
+    }
+    function calculate(operator) {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      let result;
+
+        if (operator === '+') result = num1 + num2;
+        if (operator === '-') result = num1 - num2;
+        if (operator === '*') result = num1 * num2;
+        if (operator === '/') result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+      }
+
+      document.getElementById('result').innerHTML = 'Result: ' + result;
+    
+    </script>  
+</body>
+</html>
